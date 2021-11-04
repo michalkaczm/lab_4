@@ -1,0 +1,59 @@
+class ChessBoard:
+    def __init__(self):
+        self.figures = {}
+
+    def add_figure(self, name, clas):
+        new_figure = clas()
+        self.figures[name] = new_figure
+
+    def __add__(self, a):
+        print(f"Lista figur: {self.figures}")
+
+    def __lt__(self, a):
+        f = {}
+        for a, b in self.figures.items():
+            f[a] = b.wage
+        print(sorted(f.items(), key=lambda f: f[1]))
+
+
+
+class Pionek:
+    def __init__(self):
+        self.wage = 1
+
+
+class Wieza:
+    def __init__(self):
+        self.wage = 5
+
+
+class Kon:
+    def __init__(self):
+        self.wage = 2
+
+
+class Goniec:
+    def __init__(self):
+        self.wage = 3
+
+
+class Krol:
+    def __init__(self):
+        self.wage = None
+
+
+class Hetman:
+    def __init__(self):
+        self.wage = 10
+
+
+a = ChessBoard()
+
+a.add_figure("pionek1", Pionek)
+a.add_figure("pionek2", Pionek)
+a.add_figure("kon1", Kon)
+
+
+a + 4
+a < 4
+
