@@ -2,14 +2,13 @@ class ChessBoard:
     def __init__(self):
         self.figures = {}
 
-    def add_figure(self, name, clas):
-        new_figure = clas()
+    def __add__(self, namewage):  #dodaje figury za pomocą:  nazwa planszy + ["nazwa figury", waga]
+        name = namewage[0]
+        wage = namewage[1]
+        new_figure = Pawn(name, wage)
         self.figures[name] = new_figure
 
-    def __add__(self, a):
-        print(f"Lista figur: {self.figures}")
-
-    def __lt__(self, a):
+    def __lt__(self, a):    #porównuje i sortuje wagę wszystkich figur
         f = {}
         for a, b in self.figures.items():
             f[a] = b.wage
@@ -17,43 +16,33 @@ class ChessBoard:
 
 
 
-class Pionek:
-    def __init__(self):
-        self.wage = 1
+class Pawn:
+    def __init__(self, name, wage):
+        self.name = name
+        self.wage = wage
+        self.settype()
 
-
-class Wieza:
-    def __init__(self):
-        self.wage = 5
-
-
-class Kon:
-    def __init__(self):
-        self.wage = 2
-
-
-class Goniec:
-    def __init__(self):
-        self.wage = 3
-
-
-class Krol:
-    def __init__(self):
-        self.wage = None
-
-
-class Hetman:
-    def __init__(self):
-        self.wage = 10
+    def settype(self):
+        if self.wage == 1:
+            self.type = "Pionek"
+        elif self.wage == 3:
+            self.type = "Kon"
+        elif self.wage == 4:
+            self.type = "Goniec"
+        elif self.wage == 5:
+            self.type = "Wieza"
+        elif self.wage == 10:
+            self.type = "Hetman"
+        elif self.wage == 0:
+            self.type = "Krol"
 
 
 a = ChessBoard()
 
-a.add_figure("pionek1", Pionek)
-a.add_figure("pionek2", Pionek)
-a.add_figure("kon1", Kon)
 
-
-a + 4
+a + ["pionek1", 1]
+a + ["pionek2", 1]
+a + ["kon1", 3]
+a + ["krol", 0]
 a < 4
 
